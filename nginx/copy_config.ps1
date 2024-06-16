@@ -1,0 +1,1 @@
+docker run --rm --entrypoint=cat nginx /etc/nginx/nginx.conf > nginx.conf

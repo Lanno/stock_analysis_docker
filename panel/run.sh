@@ -1,0 +1,1 @@
+docker run --env-file ../../stock_analysis_panel/.env -p 8500:8500 703178115275.dkr.ecr.us-west-2.amazonaws.com/analysis_panel:v1

@@ -1,0 +1,1 @@
+docker run -v D:\\Development\\Projects\\finance\\stock_analysis_docker\\nginx\\nginx.conf:/etc/nginx/nginx.conf:ro -p 8080:80 nginx

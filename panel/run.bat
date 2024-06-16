@@ -1,1 +1,0 @@
-docker run --env-file ../stock_analysis_panel/.env -p 8500:8500 finance_panel:latest
