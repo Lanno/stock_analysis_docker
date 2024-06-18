@@ -62,7 +62,7 @@ RUN git clone git@github.com:Lanno/stock_analysis_panel.git && \
 
 RUN git clone git@github.com:Lanno/stock_analysis_library.git && \
 	cd stock_analysis_library && \
-	git checkout e65a59f579dd27b1fd2579606e34b406e35c1c83
+	git checkout 88cd560e6ce9ff1c9c5156fea01fd91a97823d48
 
 # Final Stage
 FROM clone as final
