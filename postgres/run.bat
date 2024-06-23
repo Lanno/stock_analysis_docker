@@ -1,0 +1,1 @@
+docker run -e POSTGRES_PASSWORD=password123! -v C:\\Development\\postgresql\\data:/var/lib/postgresql/data -p 5432:5432 postgres
