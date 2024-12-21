@@ -4,11 +4,11 @@ services:
     ports:
       - "8500:8501"
     env_file:
-      - D:/Development/Projects/finance/stock_analysis_panel/.env
+      - .env
     volumes:
-      - D:/Development/Projects/finance/stock_analysis_panel/data:/srv/stock_analysis_panel/data
+      - /mnt/e/stock/stock_analysis_panel/data:/srv/stock_analysis_panel/data
     networks:
-      - app-network
+      - backend
 
   nginx:
     image: nginx
@@ -16,14 +16,42 @@ services:
       - "443:443"
       - "80:80"
     volumes:
-      - D:/Development/Projects/finance/stock_analysis_docker/nginx/server.pem:/etc/nginx/ssl/server.pem
-      - D:/Development/Projects/finance/stock_analysis_docker/nginx/server.key:/etc/nginx/ssl/server.key
-      - D:/Development/Projects/finance/stock_analysis_docker/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - /mnt/e/stock/stock_analysis_docker/nginx/server.pem:/etc/nginx/ssl/server.pem
+      - /mnt/e/stock/stock_analysis_docker/nginx/server.key:/etc/nginx/ssl/server.key
+      - /mnt/e/stock/stock_analysis_docker/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
     env_file:
-      - D:/Development/Projects/finance/stock_analysis_panel/.env
+      - .env
     networks:
-      - app-network
+      - backend
+
+  postgresql:
+    image: postgres:15 
+    environment: 
+      POSTGRES_USER: ${HISTORICAL_DATABASE_USERNAME}
+      POSTGRES_PASSWORD: ${HISTORICAL_DATABASE_PASSWORD}
+      POSTGRES_DB: ${HISTORICAL_DATABASE_NAME}
+    volumes: 
+      - postgresql_data:/var/lib/postgresql/data
+    ports: 
+      - "5432:5432" 
+    networks: 
+      - backend
+
+  pgadmin: 
+    image: dpage/pgadmin4 
+    environment: 
+      PGADMIN_DEFAULT_EMAIL: "${PGADMIN_DEFAULT_EMAIL}" 
+      PGADMIN_DEFAULT_PASSWORD: "${PGADMIN_DEFAULT_PASSWORD}" 
+    ports: 
+      - "8080:80" 
+    depends_on: 
+      - postgresql
+    networks: 
+      - backend
+
+volumes:
+  postgresql_data:
 
 networks:
-  app-network:
+  backend:
     driver: bridge
