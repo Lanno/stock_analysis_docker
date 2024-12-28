@@ -58,11 +58,11 @@ RUN ssh-keyscan github.com >> /root/.ssh/known_hosts
 
 RUN git clone git@github.com:Lanno/stock_analysis_panel.git && \
 	cd stock_analysis_panel && \
-	git checkout c9fe4c81ef4b436b77170c926d1f99f7c0cb1d35
+	git checkout 9572778ef489da5d30a21a5ea295731536d4a58e
 
 RUN git clone git@github.com:Lanno/stock_analysis_library.git && \
 	cd stock_analysis_library && \
-	git checkout 0d5f26d8f5d1960d1f37efd85406b469de7a4a87
+	git checkout 7ba66e435638f03d2694939d99dc4a68297021da
 
 # Final Stage
 FROM clone AS final
@@ -74,4 +74,7 @@ RUN cd /srv/stock_analysis_panel && \
 	touch .env && \
 	make setup
 
-ENTRYPOINT ["sh", "-c", "cd /srv/stock_analysis_panel && make serve"]
+COPY entrypoint.sh /usr/local/bin/entrypoint.sh
+RUN chmod +x /usr/local/bin/entrypoint.sh
+
+ENTRYPOINT ["sh", "/usr/local/bin/entrypoint.sh"]

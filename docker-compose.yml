@@ -7,6 +7,22 @@ services:
       - .env
     volumes:
       - /mnt/e/stock/stock_analysis_panel/data:/srv/stock_analysis_panel/data
+      # - /mnt/e/stock/stock_analysis_library/finance:/srv/stock_analysis_library/finance
+      # - /mnt/e/stock/stock_analysis_panel/tabs:/srv/stock_analysis_panel/tabs
+    networks:
+      - backend
+
+  jupyterlab:
+    image: 703178115275.dkr.ecr.us-west-2.amazonaws.com/analysis_panel:v1
+    command: ["jupyterlab"]
+    ports:
+      - "8888:8888"
+    env_file:
+      - .env
+    volumes:
+      - /mnt/e/stock/stock_analysis_panel/data:/srv/stock_analysis_panel/data
+      # - /mnt/e/stock/stock_analysis_library/finance:/srv/stock_analysis_library/finance
+      # - /mnt/e/stock/stock_analysis_panel/tabs:/srv/stock_analysis_panel/tabs
     networks:
       - backend
 
