@@ -11,6 +11,8 @@ services:
       # - /mnt/e/stock/stock_analysis_panel/tabs:/srv/stock_analysis_panel/tabs
     networks:
       - backend
+    stdin_open: true
+    tty: true
 
   jupyterlab:
     image: 703178115275.dkr.ecr.us-west-2.amazonaws.com/analysis_panel:v1
@@ -22,7 +24,7 @@ services:
     volumes:
       - /mnt/e/stock/stock_analysis_panel/data:/srv/stock_analysis_panel/data
       # - /mnt/e/stock/stock_analysis_library/finance:/srv/stock_analysis_library/finance
-      # - /mnt/e/stock/stock_analysis_panel/tabs:/srv/stock_analysis_panel/tabs
+      # - /mnt/e/stock/stock_analysis_notebooks:/srv/stock_analysis_notebooks
     networks:
       - backend
 

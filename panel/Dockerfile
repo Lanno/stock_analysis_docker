@@ -58,11 +58,11 @@ RUN ssh-keyscan github.com >> /root/.ssh/known_hosts
 
 RUN git clone git@github.com:Lanno/stock_analysis_panel.git && \
 	cd stock_analysis_panel && \
-	git checkout 6bf2edfedcca636fbe5315a7a5598a8985e12623
+	git checkout 8ace69176be61c18edbab5ca6c27ab551f6378f5
 
 RUN git clone git@github.com:Lanno/stock_analysis_library.git && \
 	cd stock_analysis_library && \
-	git checkout 7ba66e435638f03d2694939d99dc4a68297021da
+	git checkout cb58b74fc40300d4948518d01412d5515fdffbe9
 
 # Final Stage
 FROM clone AS final
